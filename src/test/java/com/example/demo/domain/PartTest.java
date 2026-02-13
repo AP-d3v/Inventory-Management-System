@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Project: demoDarbyFrameworks2-master
@@ -155,5 +156,38 @@ class PartTest {
         partIn.setId(1l);
         partOut.setId(1l);
         assertEquals(partIn.hashCode(),partOut.hashCode());
+    }
+
+    @Test
+    void testSetMaxinv() {
+        int testInMaxInv = 30;
+        partIn.setMaxInv(testInMaxInv);
+        assertEquals(testInMaxInv,partIn.getMaxInv());
+        int testOutMaxInv = 30;
+        partOut.setMaxInv(testOutMaxInv);
+        assertEquals(testOutMaxInv,partOut.getMaxInv());
+    }
+    @Test
+    void testSetMininv() {
+        int testInMinInv = 30;
+        partIn.setMinInv(testInMinInv);
+        assertEquals(testInMinInv,partIn.getMinInv());
+        int testOutMinInv = 30;
+        partOut.setMaxInv(testOutMinInv);
+        assertEquals(testOutMinInv,partOut.getMaxInv());
+    }
+
+    @Test
+    void testIsInventoryWithinBounds() {
+        int inInventory = 850;
+        partIn.setInv(inInventory);
+        partIn.setMinInv(30);
+        partIn.setMaxInv(900);
+        assertTrue(partIn.isInventoryWithinBounds());
+        int outInventory = 850;
+        partOut.setInv(outInventory);
+        partOut.setMinInv(30);
+        partOut.setMaxInv(900);
+        assertTrue(partOut.isInventoryWithinBounds());
     }
 }
